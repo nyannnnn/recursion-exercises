@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class recursion_is_very_very_fun {
 
@@ -15,7 +16,10 @@ public class recursion_is_very_very_fun {
 
 	public static int fib(int n) {
 
-		if (n <= 2) {
+		if (n < 0) {
+			return -1;
+		}
+		else if(n <= 2) {
 			return 1;
 		}
 
@@ -62,7 +66,7 @@ public class recursion_is_very_very_fun {
 		return commas(n / 1000) + "," + Math.abs(n % 1000);
 	}
 
-	public static String insert(String s, String ins) {
+	public static String insert(String s, char ins) {
 		if (s.length() == 1) {
 			if (!Character.isLetter(s.charAt(0))) {
 				return "";
@@ -83,26 +87,80 @@ public class recursion_is_very_very_fun {
 		}
 
 	}
-	
-	public static int min(int [] num, int index) {
-		if(index == 0) {
+
+	public static int min(int[] num, int index) {
+
+		if (index == 0) {
 			return num[0];
 		}
-		
-		if(num[0] > num[1]) {
-			return 
-		}
+
+		return Math.min(num[index], min(num, index - 1));
 	}
 
 	public static void main(String[] args) {
 
-		System.out.println(sumReciprocal(5));
-		System.out.println(fib(6));
-		System.out.println(multiply(-8, -7));
-		System.out.println(findVowels("AWEsome"));
-		System.out.println(commas(12345656));
-		System.out.println(insert("@@@@@@@", "@"));
-		System.out.println(min({23, 5, -2, 2000, 234}, 0));
+		Scanner in = new Scanner(System.in);
+
+		System.out.println("Which program would you like to run?");
+		System.out.println("1. Find the nth term of reciprocal sum");
+		System.out.println("2. Find the term in Fibonacci sequence");
+		System.out.println("3. Multiply two numbers");
+		System.out.println("4. Find the number of vowels");
+		System.out.println("5. Formatting an integer");
+		System.out.println("6. Insert letters in two consecutive letters");
+		System.out.println("7. Find the minimum of an array");
+
+		boolean flag = true;
+		while (flag) {
+			System.out.print("\nEnter the number of program or type \"exit\" to exit program: ");
+			String input = in.nextLine();
+			int num;
+			String multiInput[];
+			try {
+				if (input.equals("1")) {
+					System.out.print("Enter the nth term you would like to find: ");
+					num = Integer.parseInt(in.nextLine());
+					System.out.println("The term is: " + sumReciprocal(num));
+				} else if (input.equals("2")) {
+					num = Integer.parseInt(in.nextLine());
+					System.out.print("Enter the nth term you would like to find: ");
+					System.out.println("The term is: " + fib(num));
+				} else if (input.equals("3")) {
+					System.out.print("Enter two numbers you would like to multiply (Seperated by space): ");
+					multiInput = in.nextLine().split("\\s");
+					System.out.println("The sum is: "
+							+ multiply(Integer.parseInt(multiInput[0]), Integer.parseInt(multiInput[1])));
+				} else if (input.equals("4")) {
+					System.out.print("Enter a string: ");
+					input = in.nextLine();
+					System.out.println("The number of vowels: " + findVowels(input));
+				} else if (input.equals("5")) {
+					System.out.print("Enter a integer: ");
+					num = Integer.parseInt(in.nextLine());
+					System.out.println("The number will be: " + commas(num));
+				} else if (input.equals("6")) {
+					System.out.print("Enter a word and a symbol (Seperated by space): ");
+					input = in.nextLine();
+					System.out.println("The word will be: " + insert(input.substring(0, input.lastIndexOf(" ")),
+							input.charAt(input.lastIndexOf(" ") + 1)));
+				} else if (input.equals("7")) {
+					System.out.println("The array is: {123123, 697231, 192631, -81523, -825123, 1238583}");
+					//second parameter is the length of the array - 1
+					System.out.println("The smallest number will be: "
+							+ min(new int[] { 123123, 697231, 192631, -81523, -825123, 1238583 }, 5));
+				} else if (input.equalsIgnoreCase("exit")) {
+					flag = false;
+					System.out.println("Thank you for testing");
+					in.close();
+				} else {
+					System.out.println("Invalid input. Try again");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid input. Try again");
+			} catch (StringIndexOutOfBoundsException e) {
+				System.out.println("Invalid input. Try again");
+			}
+		}
 
 	}
 
