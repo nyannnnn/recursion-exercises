@@ -29,7 +29,10 @@ public class recursion_is_very_very_fun {
 		if (y == 1) {
 			return x;
 		}
-		if (y < 0) {
+		else if(y == 0) {
+			return 0;
+		}
+		else if (y < 0) {
 			return -(multiply(x, Math.abs(y)));
 		}
 		return x + multiply(x, Math.abs(y - 1));
@@ -74,7 +77,7 @@ public class recursion_is_very_very_fun {
 
 		if (Character.isLetter(s.charAt(0)) && Character.isLetter(s.charAt(1))
 				&& s.toLowerCase().charAt(0) == s.toLowerCase().charAt(1)) {
-			return s.charAt(0) + ins + insert(s.substring(1), ins);
+			return"" +  s.charAt(0) + ins + insert(s.substring(1), ins);
 		} else if (!((Character.isLetter(s.charAt(0))))) {
 			return insert(s.substring(1), ins);
 		} else if (!(Character.isLetter(s.charAt(1)))) {
@@ -117,14 +120,14 @@ public class recursion_is_very_very_fun {
 				if (input.equals("1")) {
 					System.out.print("Enter the nth term you would like to find: ");
 					num = Integer.parseInt(in.nextLine());
-					if (num < 0) {
+					if (num <= 0) {
 						throw new NumberFormatException();
 					}
 					System.out.println("The term is: " + sumReciprocal(num));
 				} else if (input.equals("2")) {
 					System.out.print("Enter the nth term you would like to find: ");
 					num = Integer.parseInt(in.nextLine());
-					if (num < 0) {
+					if (num <= 0) {
 						throw new NumberFormatException();
 					}
 					System.out.println("The term is: " + fib(num));
@@ -147,10 +150,10 @@ public class recursion_is_very_very_fun {
 					System.out.println("The word will be: " + insert(input.substring(0, input.lastIndexOf(" ")),
 							input.charAt(input.lastIndexOf(" ") + 1)));
 				} else if (input.equals("7")) {
-					System.out.println("The array is: {123123, 697231, 192631, -81523, -825123, 1238583}");
+					System.out.println("The array is: {123, 87123, 1, -83, -9009, 4166211}");
 					// second parameter is the length of the array -1
 					System.out.println("The smallest number will be: "
-							+ min(new int[] { 123123, 697231, 192631, -81523, -825123, 1238583 }, 5));
+							+ min(new int[] { 123, 87123, 1, -83, -9009, 4166211 }, 5));
 				} else if (input.equalsIgnoreCase("exit")) {
 					flag = false;
 					System.out.println("Thank you for testing");
