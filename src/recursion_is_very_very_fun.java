@@ -16,10 +16,7 @@ public class recursion_is_very_very_fun {
 
 	public static int fib(int n) {
 
-		if (n < 0) {
-			return -1;
-		}
-		else if(n <= 2) {
+		if (n <= 2) {
 			return 1;
 		}
 
@@ -120,10 +117,16 @@ public class recursion_is_very_very_fun {
 				if (input.equals("1")) {
 					System.out.print("Enter the nth term you would like to find: ");
 					num = Integer.parseInt(in.nextLine());
+					if (num < 0) {
+						throw new NumberFormatException();
+					}
 					System.out.println("The term is: " + sumReciprocal(num));
 				} else if (input.equals("2")) {
-					num = Integer.parseInt(in.nextLine());
 					System.out.print("Enter the nth term you would like to find: ");
+					num = Integer.parseInt(in.nextLine());
+					if (num < 0) {
+						throw new NumberFormatException();
+					}
 					System.out.println("The term is: " + fib(num));
 				} else if (input.equals("3")) {
 					System.out.print("Enter two numbers you would like to multiply (Seperated by space): ");
@@ -145,7 +148,7 @@ public class recursion_is_very_very_fun {
 							input.charAt(input.lastIndexOf(" ") + 1)));
 				} else if (input.equals("7")) {
 					System.out.println("The array is: {123123, 697231, 192631, -81523, -825123, 1238583}");
-					//second parameter is the length of the array - 1
+					// second parameter is the length of the array -1
 					System.out.println("The smallest number will be: "
 							+ min(new int[] { 123123, 697231, 192631, -81523, -825123, 1238583 }, 5));
 				} else if (input.equalsIgnoreCase("exit")) {
